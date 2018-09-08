@@ -1,0 +1,17 @@
+<div class="grid-container">
+{{#each model as |p| }}
+  <div class="grid-x grid-margin-x post">
+    <div class="cell small-12 large-4">
+        {{#link-to "post" p.slug}}<img src="{{p.gatewayPageImage}}" alt="">  {{/link-to}}      
+    </div>
+    <div class="small-12 cell large-8 blog-text">
+        <h2>{{p.title}}</h2>
+        {{{p.excerpt}}}
+        {{#link-to "post" p.slug}}
+        <button class="hollow button" style="color:white; border-color:white;">Read More</button>
+        {{/link-to}}
+    </div>
+  </div>
+{{/each}}
+</div>
+{{outlet}}

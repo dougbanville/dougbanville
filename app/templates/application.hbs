@@ -1,5 +1,41 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<div class="header">
+    <div class="grid-container">
+  <div class="grid-x grid-margin-x">
+       <div class="cell small-8">
+         {{#link-to "index"}}
+           <div class="logo"></div>
+           {{/link-to}}
+       </div>
+       <div class="cell small-4 float-right">
+           <a class="button transparent">
+               <i class="fa fa-bars"  data-toggle="zf-off-canvas-right"></i>
+           </a>
+       </div>
+    
+    </div>
+    </div>
+</div>
+{{#zf-off-canvas showRightOffCanvas=true as |section| }}
 
-{{outlet}}
+
+  {{#if section.isOffCanvasLeft}}
+    <p>Example left off canvas content</p>
+  {{else if section.isOffCanvasRight}}
+    <div class="off-menu">
+    <ul class="vertical menu">
+      {{#link-to "index"}}<li data-toggle="zf-off-canvas-right">Home</li>{{/link-to}}
+      {{#each model as |l|}}
+      {{#link-to "post" l.slug}}
+        <li data-toggle="zf-off-canvas-right">{{ l.title }}</li>
+      {{/link-to}}
+      {{/each}}
+    </ul>
+    </div>
+  {{else}}
+
+    <!-- Main body goes here -->
+    {{outlet}}
+
+    <!-- Buttons to toggle off canvas -->
+  {{/if}}
+{{/zf-off-canvas}}
